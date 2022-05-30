@@ -8,6 +8,7 @@ class EditUserComponent extends Component{
 
         this.state = {
             id: '',
+            username:'',
             firstName: '',
             lastName: '',
             age: '',
@@ -21,12 +22,12 @@ class EditUserComponent extends Component{
     }
 
     loadUser = () => {
-        ApiService.fetchUserById(window.localStorage.getItem("userId"))
+        ApiService.fetchUserByID(window.localStorage.getItem("userId"))
         .then( res => {
             let user = res.data;
             this.setState({
                 id: user.id,
-                userName: user.userName,
+                userName: user.username,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 age: user.age,
@@ -45,7 +46,7 @@ class EditUserComponent extends Component{
     }
 
     saveUser = (e) => {
-        e.preventDefault();
+        //e.preventDefault();
 
         let user = {
             id: this.state.id,
@@ -62,7 +63,7 @@ class EditUserComponent extends Component{
                 message: user.lastName + '님 정보가 수정되었습니다.'
             })
             this.props.history.push('/users');
-
+            window.location.reload();
         })
         .catch(err => {
             console.log('saveUser() 에러', err);
@@ -76,19 +77,19 @@ class EditUserComponent extends Component{
                 <form>
 
                     <TextField type = "text" name="username" readOnly={true}
-                    fullWidth margin="nomal" value={this.state.username} />
+                    fullWidth margin="normal" value={this.state.username} />
 
-                    <TextField placefolder = "Edit your first name" name="firstName"
-                    fullWidth margin="nomal" value={this.state.firstName} onChange={this.onChange} />        
+                    <TextField placeholder = "Edit your first name" name="firstName"
+                    fullWidth margin="normal" value={this.state.firstName} onChange={this.onChange} />        
 
-                    <TextField placefolder = "Edit your last name" name="lastName"
-                    fullWidth margin="nomal" value={this.state.lastName} onChange={this.onChange} />        
+                    <TextField placeholder = "Edit your last name" name="lastName"
+                    fullWidth margin="normal" value={this.state.lastName} onChange={this.onChange} />        
                     
-                    <TextField type="number" placefolder = "Edit your age" name="age"
-                    fullWidth margin="nomal" value={this.state.age} onChange={this.onChange} />        
+                    <TextField type="number" placeholder = "Edit your age" name="age"
+                    fullWidth margin="normal" value={this.state.age} onChange={this.onChange} />        
 
-                    <TextField type="number" placefolder = "Edit your salary" name="salary"
-                    fullWidth margin="nomal" value={this.state.salary} onChange={this.onChange} />        
+                    <TextField type="number" placeholder = "Edit your salary" name="salary"
+                    fullWidth margin="normal" value={this.state.salary} onChange={this.onChange} />        
 
                     <Button variant="contained" color="primary" onClick={this.saveUser}>Save</Button>
                     
