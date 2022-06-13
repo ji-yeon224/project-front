@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import PostComponent from '../PostComponent';
 import AddUserComponent from "../user/AddUserComponent";
 import EditUserComponent from "../user/EditUserComponent";
 import UserListComponent from "../user/UserListComponent";
@@ -14,6 +15,7 @@ const AppRouter = () => {
                     <Route path="/users" component={UserListComponent} />
                     <Route path="/add-user" component={AddUserComponent} />
                     <Route path="/edit-user" component={EditUserComponent} />
+                    <Route path="/post" component={PostComponent} />
                 </Switch>
             </div>
             </BrowserRouter>

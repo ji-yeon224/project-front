@@ -7,6 +7,7 @@ function App() {
  
   return(
     <div>
+      <h2>BLOG</h2>
       <NavBar />
       <Container>
         <AppRouter />
