@@ -1,25 +1,33 @@
-import { AppBar, Button, IconButton, Toolbar, Typography } from "@material-ui/core"
-import MenuIcon from '@material-ui/icons/Menu'
+//import { AppBar, Button, IconButton, Toolbar, Typography } from "@material-ui/core"
+//import MenuIcon from '@material-ui/icons/Menu'
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+
 const NavBar = () => {
     return(
-        <div> 
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton edge="start" color="inherit" aria-label="Menu">
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" style={style}>
-                        React User Application
-                    </Typography>
-                    <Button color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
-        </div>
+        <Navbar bg="light" expand="lg">
+            <Container>
+                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto">
+                    <Nav.Link href="#home">Home</Nav.Link>
+                    <Nav.Link href="#link">Link</Nav.Link>
+                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                    </NavDropdown>
+                </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
 }
 
-const style = {
-    flexGrow: 1
-}
+// const style = {
+//     flexGrow: 1
+// }
 
 export default NavBar;
