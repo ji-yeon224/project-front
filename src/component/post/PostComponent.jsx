@@ -1,5 +1,5 @@
-import { Component } from "react";
-import PostService from "../service/PostService";
+import React, { Component } from "react";
+import PostService from "../../service/PostService";
 
 class PostComponent extends Component{
 
@@ -29,6 +29,13 @@ class PostComponent extends Component{
         });
     }
 
+    showPost (postNo){
+        //window.localStorage.setItem("postNo", postNo);
+        this.props.history.push(`/readPost/${postNo}`);
+        console.log(postNo);
+        window.location.reload();
+    }
+
     render() {
         return (
             <div className="album">
@@ -36,7 +43,7 @@ class PostComponent extends Component{
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
                     {this.state.posts.map(post =>
-                    <div key={post.postNo} style={style}>
+                    <div key={post.postNo} style={style} onClick={() => this.showPost(post.postNo)}>
                         <h4>{post.title}</h4>
                         
                     </div>
