@@ -22,6 +22,8 @@ class PostService {
     deletePost(postNo) {
         return axios.delete(POST_API_URL + '/' + postNo);
     }
+
+    
 }
 
 export default new PostService();
