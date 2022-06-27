@@ -18,25 +18,40 @@ import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-sy
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import { Button } from 'react-bootstrap';
 
+import markdownIt from "markdown-it";
+import DOMPurify from "dompurify";
+
 
 class WriteComponent extends Component {
     constructor(props){
         super(props);
         this.state={
-
-        }
+            text: "",
+        };
     }
 
     componentDidMount() {
         console.log('writeComponent');
     }
 
+    
+
     render() {
         const editorRef = React.createRef();
+        const sanitizer = DOMPurify.sanitize;
 
         // const onChangeEditorTextHandler = () => {
         //     console.log(editorRef.current.getInstance().getMarkdown());
         // }
+
+        const savePost = () => {
+            this.setState({ 
+                text : editorRef.current.getInstance().getMarkdown()
+            });
+            console.log(this.state.text);
+            console.log(markdownIt().render(this.state.text));
+    
+        }
 
         return (
             <div>
@@ -56,11 +71,14 @@ class WriteComponent extends Component {
                     ref={editorRef}
                     plugins={[colorSyntax, [codeSyntaxHighlight, {highlighter: Prism}]]}
                     hideModeSwitch='true'
+                    
                 />
                 <Button
                     variant="primary"
                     type="submit"
-                    className="submitBtn">Post</Button>
+                    className="submitBtn"
+                    onClick={savePost}>Post</Button>
+                    
                 <Button
                     variant="primary"
                     className="cacelBtn">Cancel</Button>    
